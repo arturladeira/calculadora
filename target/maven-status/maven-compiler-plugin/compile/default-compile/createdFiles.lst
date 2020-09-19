@@ -1,0 +1,3 @@
+com\mycompany\calc\JAXRSConfiguration.class
+com\mycompany\calc\resources\JavaEE8Resource.class
+com\mycompany\calc\CalcServlet.class

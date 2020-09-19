@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <form action="CalcServlet" method="get">
+            <label>Valor A: </label>
+            <input type="text" name="ValorA">
+            <br>
+            <label>Valor B: </label>
+            <input type="text" name="ValorB">
+            <br>
+            <select name="opcao"><br>
+                <option value="+">(+)</option>
+                <option value="-">(-)</option>
+                <option value="*">(*)</option>
+                <option value="/">(/)</option>
+            </select>
+            <br>
+            <input type="submit" value="Calcular">
+        </form>
+    </body>
+</html>
