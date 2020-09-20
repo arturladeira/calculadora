@@ -18,6 +18,8 @@
             <input type="text" size="10" value="<%= request.getAttribute("resultado") %>"><br>
             Visitas:
             <input type="text" size="10" value="<%= request.getAttribute("visitas") %>"><br>
+            <!--Visitas:
+            <input type="text" size="10" value="<%= request.getCookies() %>"><br>-->
         </form>
         
         <br>

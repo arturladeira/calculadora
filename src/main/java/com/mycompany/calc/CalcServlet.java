@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -65,29 +66,29 @@ public class CalcServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         
-        String svalorA = request.getParameter("ValorA");
-        String svalorB = request.getParameter("ValorB");
-        String sopcao = request.getParameter("opcao");
+        String stringValorA = request.getParameter("ValorA");
+        String stringValorB = request.getParameter("ValorB");
+        String operador = request.getParameter("opcao");
         
-        double dvalorA = Double.parseDouble(svalorA);
-        double dvalorB = Double.parseDouble(svalorB);
+        double doubleValorA = Double.parseDouble(stringValorA);
+        double doubleValorB = Double.parseDouble(stringValorB);
         double resultado = 0;
         
-        if (sopcao.equals("+")){
-            resultado = dvalorA + dvalorB;
+        if (operador.equals("+")){
+            resultado = doubleValorA + doubleValorB;
         }
-        else if (sopcao.equals("-")){
-            resultado = dvalorA - dvalorB;
+        else if (operador.equals("-")){
+            resultado = doubleValorA - doubleValorB;
         }
-        else if (sopcao.equals("*")){
-            resultado = dvalorA * dvalorB;
+        else if (operador.equals("*")){
+            resultado = doubleValorA * doubleValorB;
         }
-        else if (sopcao.equals("/")){
-            resultado = dvalorA / dvalorB;
+        else if (operador.equals("/")){
+            resultado = doubleValorA / doubleValorB;
         }
         
-        /*Cookie visit = new Cookie("visit", visitas);
-        response.addCookie(new Cookie("visit", visitas));*/
+        Cookie visit = new Cookie("visit", String.valueOf(visitas));
+        response.addCookie(visit);
         request.setAttribute("resultado", resultado);
         request.setAttribute("visitas", visitas);
         request.getRequestDispatcher("resultado.jsp").forward(request, response);
