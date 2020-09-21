@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CalcServlet", urlPatterns = {"/CalcServlet"})
 public class CalcServlet extends HttpServlet {
-    int visitas = 0;
     
+    int visitas = 0;
+    // inicializa o contator de visitas em 1
     @Override
     public void init(){
         visitas = 1;
@@ -66,14 +67,15 @@ public class CalcServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         
+        //converte os valores dos números recebido no index.html para double e o resultado para string
         String stringValorA = request.getParameter("ValorA");
         String stringValorB = request.getParameter("ValorB");
         String operador = request.getParameter("opcao");
-        
         double doubleValorA = Double.parseDouble(stringValorA);
         double doubleValorB = Double.parseDouble(stringValorB);
         double resultado = 0;
         
+        //faz a operação de acordo com o operador
         if (operador.equals("+")){
             resultado = doubleValorA + doubleValorB;
         }
@@ -87,12 +89,23 @@ public class CalcServlet extends HttpServlet {
             resultado = doubleValorA / doubleValorB;
         }
         
-        Cookie visit = new Cookie("visit", String.valueOf(visitas));
+        // atualiza o contador de visitas
+        Cookie cookies[] = request.getCookies();
+	if (cookies != null)
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("visitas")) {
+                    visitas = Integer.parseInt(cookies[i].getValue()) + 1;
+		}
+            }
+        
+        //cria um novo cookie de visita
+        Cookie visit = new Cookie("visitas", String.valueOf(visitas));
         response.addCookie(visit);
-        request.setAttribute("resultado", resultado);
+        
+        // variáveis para serem utilizadas no jsp
         request.setAttribute("visitas", visitas);
+        request.setAttribute("resultado", resultado);
         request.getRequestDispatcher("resultado.jsp").forward(request, response);
-        visitas++;
     }
   
 

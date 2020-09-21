@@ -14,15 +14,16 @@
     <body>
         <h1>Resultado do cálculo</h1>
         <form>
+            <!-- apresenta o resultado da operação-->
             Resultado:
             <input type="text" size="10" value="<%= request.getAttribute("resultado") %>"><br>
-            Visitas:
+            <!-- apresenta o número de visitas-->
+            Visitas: 
             <input type="text" size="10" value="<%= request.getAttribute("visitas") %>"><br>
-            <!--Visitas:
-            <input type="text" size="10" value="<%= request.getCookies() %>"><br>-->
         </form>
         
         <br>
+        <!-- Retorna para a página anterior para fazer outra operação-->
         <input type="button" value="Retornar" onclick="history.back()"><br>
     </body>
 </html>
